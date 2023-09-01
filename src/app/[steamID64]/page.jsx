@@ -9,7 +9,7 @@ export default async function page({ params: { steamID64 } }) {
   }
   return (
     <CardUser
-      steamID64={steamID64}
+      steamID64={profile.steamID64}
       privacy={profile.privacy}
       steamID={profile.steamID}
       onlineState={profile.onlineState}

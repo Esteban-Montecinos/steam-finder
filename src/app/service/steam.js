@@ -32,6 +32,7 @@ export async function getProfile(steamID64) {
   const error = i("error").text();
   if (error) return undefined;
   const id = {};
+  id.steamID64 = i("steamID64").text();
   id.privacy = i("privacyState").text();
   id.steamID = i("steamID").text();
   id.onlineState = i("onlineState").text();
@@ -45,6 +46,7 @@ export async function getProfile(steamID64) {
   }
 
   const perfil = {};
+  perfil.steamID64 = i("steamID64").text();
   perfil.privacy = $("privacyState").text();
   perfil.steamID = $("steamID").text();
   perfil.onlineState = $("onlineState").text();
