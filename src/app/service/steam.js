@@ -46,7 +46,7 @@ export async function getProfile(steamID64) {
   }
 
   const perfil = {};
-  perfil.steamID64 = i("steamID64").text();
+  perfil.steamID64 = $("steamID64").text();
   perfil.privacy = $("privacyState").text();
   perfil.steamID = $("steamID").text();
   perfil.onlineState = $("onlineState").text();
