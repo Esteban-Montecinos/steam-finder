@@ -84,17 +84,15 @@ export default async function Image({ params: { steamID64 } }) {
                 >
                   {state}
                 </p>
-                {message && (
-                  <p
-                    style={{
-                      padding: "0",
-                      margin: "0",
-                      fontSize: "1.5rem",
-                    }}
-                  >
-                    {message}
-                  </p>
-                )}
+                <p
+                  style={{
+                    padding: "0",
+                    margin: "0",
+                    fontSize: "1.5rem",
+                  }}
+                >
+                  {message}
+                </p>
               </div>
             </div>
           </div>
