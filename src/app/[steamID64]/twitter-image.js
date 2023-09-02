@@ -9,7 +9,7 @@ export default async function Image({ params: { steamID64 } }) {
   //const profile = mockupPrivateOffline;
   //const profile = mockupPrivateOnline;
   //const profile = mockupPrivateInGame;
-  const [state, message] = profile.stateMessage.split("<br/>");
+  const [state, message] = profile?.stateMessage.split("<br/>");
   return new ImageResponse(
     (
       <div
@@ -45,8 +45,8 @@ export default async function Image({ params: { steamID64 } }) {
           >
             <img
               style={{ borderRadius: "1rem" }}
-              src={profile.avatarFull}
-              alt={`${profile.steamID}'s Steam avatar full size`}
+              src={profile?.avatarFull}
+              alt={`${profile?.steamID}'s Steam avatar full size`}
               width="240"
               height="240"
             />
@@ -64,7 +64,7 @@ export default async function Image({ params: { steamID64 } }) {
                   fontSize: "2.5rem",
                 }}
               >
-                {profile.steamID}
+                {profile?.steamID}
               </p>
               <div
                 style={{
@@ -104,7 +104,7 @@ export default async function Image({ params: { steamID64 } }) {
               fontSize: "2.5rem",
             }}
           >
-            {profile.privacy}
+            {profile?.privacy}
           </p>
         </div>
 
@@ -125,7 +125,7 @@ export default async function Image({ params: { steamID64 } }) {
             }}
           >
             <p style={{ fontSize: "3rem", padding: "0", margin: "0" }}>
-              {profile.vacBanned}
+              {profile?.vacBanned}
             </p>
             <p style={{ fontSize: "2.75rem" }}>Vac Banned</p>
           </div>
@@ -137,7 +137,7 @@ export default async function Image({ params: { steamID64 } }) {
             }}
           >
             <p style={{ fontSize: "3rem", padding: "0", margin: "0" }}>
-              {profile.tradeBanState}
+              {profile?.tradeBanState}
             </p>
             <p style={{ fontSize: "2.75rem" }}>Trade Ban</p>
           </div>
@@ -149,7 +149,7 @@ export default async function Image({ params: { steamID64 } }) {
             }}
           >
             <p style={{ fontSize: "3rem", padding: "0", margin: "0" }}>
-              {profile.isLimitedAccount}
+              {profile?.isLimitedAccount}
             </p>
             <p style={{ fontSize: "2.75rem" }}>Limited Account</p>
           </div>
