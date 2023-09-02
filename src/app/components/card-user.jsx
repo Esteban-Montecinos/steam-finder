@@ -28,17 +28,16 @@ export default function CardUser({
   publicProfile,
 }) {
   const [state, message] = stateMessage.split("<br/>");
-  
 
   return (
     <Card
       isBlurred
-      className={`w-full max-w-xl p-2 bg-gradient-to-tl from-lime-900 via-lime-500/20 to-lime-900 ${
+      className={`w-full max-w-xl p-2 bg-gradient-to-tl  ${
         onlineState === "in-game"
-          ? "text-lime-400"
+          ? "text-lime-400 from-lime-900 via-lime-500/20 to-lime-900"
           : onlineState === "online"
-          ? "text-sky-400"
-          : "text-neutral-400"
+          ? "text-sky-400 from-sky-900 via-sky-500/20 to-sky-900"
+          : "text-neutral-400 from-neutral-900 via-neutral-500/20 to-neutral-900"
       }`}
     >
       <CardHeader className="items-start justify-between w-full p-2">
@@ -59,12 +58,16 @@ export default function CardUser({
           />
           <div className="flex flex-col items-start justify-start gap-1">
             <h4 className="text-base font-semibold leading-none">{steamID}</h4>
-            <p className="text-xs">{publicProfile?.realname}</p>
-            <IframeInfo
-              summary={lines(publicProfile?.summary)}
-              title="View more info"
-              titleModal="Info"
-            />
+            {privacy === 'public' && (
+              <>
+                <p className="text-xs">{publicProfile?.realname}</p>
+                <IframeInfo
+                  summary={lines(publicProfile?.summary)}
+                  title="View more info"
+                  titleModal="Info"
+                />
+              </>
+            )}
           </div>
         </div>
         <div className="flex flex-col items-end gap-1">
@@ -77,7 +80,7 @@ export default function CardUser({
             {steamID64}
           </Link>
           <span className="text-sm font-semibold text-neutral-400">
-            {privacy}{" "}
+            {privacy}
           </span>
         </div>
       </CardHeader>
@@ -87,36 +90,36 @@ export default function CardUser({
           <CardInGame
             gameLink={publicProfile?.gameLink}
             gameLogo={publicProfile?.gameLogo}
-            gameName={publicProfile?.gameName}
+            gameName={message}
             state={state}
           />
         )}
         {publicProfile?.mostGameName && publicProfile && (
           <>
-        <Divider className="my-4" />
-          <CardMostPlayed
-            mostHoursPlayed={publicProfile?.mostHoursPlayed}
-            mostGameName={publicProfile?.mostGameName}
-            mostGameLogo={publicProfile?.mostGameLogo}
-            gameName={publicProfile?.gameName}
-            mostHoursOnRecord={publicProfile?.mostHoursOnRecord}
-          />
+            <Divider className="my-4" />
+            <CardMostPlayed
+              mostHoursPlayed={publicProfile?.mostHoursPlayed}
+              mostGameName={publicProfile?.mostGameName}
+              mostGameLogo={publicProfile?.mostGameLogo}
+              gameName={publicProfile?.gameName}
+              mostHoursOnRecord={publicProfile?.mostHoursOnRecord}
+            />
           </>
         )}
         {publicProfile?.groupName && publicProfile && (
           <>
-        <Divider className="my-4" />
-          <CardGroup
-          groupURL={publicProfile?.groupURL}
-          groupName={publicProfile?.groupName}
-          groupSummary={lines(publicProfile?.groupSummary)}
-          avatarFull={publicProfile?.avatarFull}
-          memberCount={publicProfile?.memberCount}
-          membersInGame={publicProfile?.membersInGame}
-          membersOnline={publicProfile?.membersOnline}
-          membersInChat={publicProfile?.membersInChat}
-        />
-        </>
+            <Divider className="my-4" />
+            <CardGroup
+              groupURL={publicProfile?.groupURL}
+              groupName={publicProfile?.groupName}
+              groupSummary={lines(publicProfile?.groupSummary)}
+              avatarFull={publicProfile?.avatarFull}
+              memberCount={publicProfile?.memberCount}
+              membersInGame={publicProfile?.membersInGame}
+              membersOnline={publicProfile?.membersOnline}
+              membersInChat={publicProfile?.membersInChat}
+            />
+          </>
         )}
       </CardBody>
       <CardFooter className="justify-between w-full gap-2 text-neutral-200">
