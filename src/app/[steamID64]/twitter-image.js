@@ -44,7 +44,7 @@ export default async function Image({ params: { steamID64 } }) {
             }}
           >
             <img
-              style={{ borderRadius: "1rem" }}
+              style={{ display: "flex",borderRadius: "1rem" }}
               src={profile?.avatarFull}
               alt={`${profile?.steamID}'s Steam avatar full size`}
               width="240"
@@ -59,6 +59,7 @@ export default async function Image({ params: { steamID64 } }) {
             >
               <p
                 style={{
+                    display: "flex",
                   padding: "0",
                   margin: "0",
                   fontSize: "2.5rem",
@@ -76,6 +77,7 @@ export default async function Image({ params: { steamID64 } }) {
               >
                 <p
                   style={{
+                    display: "flex",
                     padding: "0",
                     margin: "0",
                     opacity: "0.6",
@@ -86,6 +88,7 @@ export default async function Image({ params: { steamID64 } }) {
                 </p>
                 <p
                   style={{
+                    display: "flex",
                     padding: "0",
                     margin: "0",
                     fontSize: "1.5rem",
@@ -98,6 +101,7 @@ export default async function Image({ params: { steamID64 } }) {
           </div>
           <p
             style={{
+                display: "flex",
               color: "rgb(229 229 229)",
               padding: "0",
               margin: "0",
@@ -124,10 +128,10 @@ export default async function Image({ params: { steamID64 } }) {
               gap: "0.25rem",
             }}
           >
-            <p style={{ fontSize: "3rem", padding: "0", margin: "0" }}>
+            <p style={{ display: "flex",fontSize: "3rem", padding: "0", margin: "0" }}>
               {profile?.vacBanned}
             </p>
-            <p style={{ fontSize: "2.75rem" }}>Vac Banned</p>
+            <p style={{ display: "flex",fontSize: "2.75rem" }}>Vac Banned</p>
           </div>
           <div
             style={{
@@ -136,10 +140,10 @@ export default async function Image({ params: { steamID64 } }) {
               gap: "0.25rem",
             }}
           >
-            <p style={{ fontSize: "3rem", padding: "0", margin: "0" }}>
+            <p style={{ display: "flex",fontSize: "3rem", padding: "0", margin: "0" }}>
               {profile?.tradeBanState}
             </p>
-            <p style={{ fontSize: "2.75rem" }}>Trade Ban</p>
+            <p style={{ display: "flex",fontSize: "2.75rem" }}>Trade Ban</p>
           </div>
           <div
             style={{
@@ -148,10 +152,10 @@ export default async function Image({ params: { steamID64 } }) {
               gap: "0.25rem",
             }}
           >
-            <p style={{ fontSize: "3rem", padding: "0", margin: "0" }}>
+            <p style={{ display: "flex",fontSize: "3rem", padding: "0", margin: "0" }}>
               {profile?.isLimitedAccount}
             </p>
-            <p style={{ fontSize: "2.75rem" }}>Limited Account</p>
+            <p style={{ display: "flex",fontSize: "2.75rem" }}>Limited Account</p>
           </div>
         </div>
       </div>
