@@ -1,7 +1,7 @@
 'use client'
 
 import { Input } from "@nextui-org/react"
-import { IconSearch } from "@tabler/icons-react"
+import { SearchIcon } from "./search-svg"
 
 export default function InputSearch() {
   return (
@@ -22,7 +22,7 @@ export default function InputSearch() {
         }}
         placeholder="765611983xxxxxxxx"
         startContent={
-          <IconSearch className="flex-shrink-0 pointer-events-none text-white/90 text-slate-400" />
+          <SearchIcon className="flex-shrink-0 pointer-events-none text-white/90 text-slate-400" />
         }
       />
   )
