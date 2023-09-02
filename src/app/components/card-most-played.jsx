@@ -9,7 +9,7 @@ export default function CardMostPlayed({mostHoursPlayed, mostGameName, mostGameL
           <p>Recent Activity</p>
           <p>{`${mostHoursPlayed} hours past 2 weeks`}</p>
         </div>
-        <div className="flex flex-row justify-between">
+        <div className="flex min-[600px]:flex-row flex-col min-[600px]:justify-between items-center">
           <Image
             isBlurred
             shadow="sm"
@@ -18,7 +18,7 @@ export default function CardMostPlayed({mostHoursPlayed, mostGameName, mostGameL
             className="w-full h-full max-h-20 aspect-video"
             src={mostGameLogo}
           />
-          <div className="flex flex-col items-end justify-between gap-1">
+          <div className="flex flex-col items-center justify-between min-[600px]:items-end gap-1">
             <p className="text-sm font-bold">{gameName}</p>
             <p className="text-neutral-200/80">{`${mostHoursOnRecord} hrs on record`}</p>
           </div>

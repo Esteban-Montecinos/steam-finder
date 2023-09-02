@@ -7,7 +7,7 @@ export default function CardGroup({groupURL,groupName,avatarFull,groupSummary,me
     <Card shadow="sm" isBlurred className="w-full p-0 rounded-lg">
           <CardBody className="flex flex-col gap-2">
             <p className="text-base text-neutral-200">Favorite Group</p>
-            <div className="flex flex-row justify-between">
+            <div className="flex min-[600px]:flex-row flex-col  min-[600px]:justify-between items-center">
               <Link
                 href={`https://steamcommunity.com/groups/${groupURL}`}
                 target="_blank"
@@ -21,7 +21,7 @@ export default function CardGroup({groupURL,groupName,avatarFull,groupSummary,me
                   src={avatarFull}
                 />
               </Link>
-              <div className="flex flex-col items-end justify-between gap-1">
+              <div className="flex flex-col items-center justify-between min-[600px]:items-end gap-1">
                 <Link
                   href={`https://steamcommunity.com/groups/${groupURL}`}
                   target="_blank"
@@ -37,14 +37,14 @@ export default function CardGroup({groupURL,groupName,avatarFull,groupSummary,me
               </div>
             </div>
           </CardBody>
-          <CardFooter className="justify-between w-full gap-2 text-neutral-300">
+          <CardFooter className="flex-wrap justify-between w-full gap-2 text-neutral-300">
             <div className="flex flex-col gap-1">
               <p className="font-bold text-small text-neutral-200">
                 {memberCount}
               </p>
               <p className="font-medium text-small">Members</p>
             </div>
-            <div className="flex flex-col gap-1 ">
+            <div className="flex flex-col gap-1">
               <p className="font-bold text-small text-lime-400">
                 {membersInGame}
               </p>

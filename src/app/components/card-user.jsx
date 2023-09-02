@@ -41,7 +41,7 @@ export default function CardUser({
       }`}
     >
       <CardHeader className="items-start justify-between w-full p-2">
-        <div className="flex justify-start gap-5">
+        <div className="flex min-[600px]:flex-row flex-col justify-start gap-5">
           <Avatar
             color={
               onlineState === "in-game"
@@ -58,7 +58,7 @@ export default function CardUser({
           />
           <div className="flex flex-col items-start justify-start gap-1">
             <h4 className="text-base font-semibold leading-none">{steamID}</h4>
-            {privacy === 'public' && (
+            {privacy === "public" && (
               <>
                 <p className="text-xs">{publicProfile?.realname}</p>
                 <IframeInfo
@@ -79,7 +79,12 @@ export default function CardUser({
           >
             {steamID64}
           </Link>
-          <span className="text-sm font-semibold text-neutral-400">
+          {privacy === "public" && (
+            <span className="text-xs font-light text-neutral-500">
+              {publicProfile?.memberSince}
+            </span>
+          )}
+          <span className="text-xs font-semibold text-neutral-400">
             {privacy}
           </span>
         </div>
@@ -122,18 +127,18 @@ export default function CardUser({
           </>
         )}
       </CardBody>
-      <CardFooter className="justify-between w-full gap-2 text-neutral-200">
-        <div className="flex gap-1">
+      <CardFooter className="items-center justify-between w-full gap-1 text-neutral-200">
+        <div className="flex flex-col items-center gap-1">
           <p className="font-semibold text-small">{vacBanned}</p>
-          <p className="text-small">Vac Banned</p>
+          <p className="text-center text-small">Vac Banned</p>
         </div>
-        <div className="flex gap-1">
+        <div className="flex flex-col items-center gap-1">
           <p className="font-semibold text-small">{tradeBanState}</p>
-          <p className="text-small">Trade Ban</p>
+          <p className="text-center text-small">Trade Ban</p>
         </div>
-        <div className="flex gap-1">
+        <div className="flex flex-col items-center gap-1">
           <p className="font-semibold text-small">{isLimitedAccount}</p>
-          <p className="text-small">Limited Account</p>
+          <p className="text-center text-small">Limited Account</p>
         </div>
       </CardFooter>
     </Card>

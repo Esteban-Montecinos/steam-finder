@@ -7,7 +7,7 @@ export default function CardInGame({gameLink, gameLogo, gameName, state}) {
     <Link
           href={gameLink}
           target="_blank"
-          className="flex items-center justify-start w-full gap-4 p-4 rounded-lg bg-lime-950/80 text-lime-500"
+          className="flex min-[600px]:flex-row flex-col items-center justify-start w-full gap-4 p-4 rounded-lg bg-lime-950/80 text-lime-500"
         >
           <Image
             isZoomed

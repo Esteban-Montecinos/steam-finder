@@ -36,7 +36,6 @@ export default function IframeInfo({ title, titleModal,summary}) {
   </body>
 </html>
 `}
-              frameborder="0"
             ></iframe>
           </ModalBody>
         </>
