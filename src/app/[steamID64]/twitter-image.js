@@ -1,11 +1,11 @@
 import { ImageResponse } from "next/server";
-import { getProfile } from "../service/steam";
+import { getPublicInfo } from "../service/steam";
 
 export const runtime = "edge";
 export const contentType = "image/png";
 
 export default async function Image({ params: { steamID64 } }) {
-  const profile = await getProfile(steamID64);
+  const profile = await getPublicInfo(steamID64);
   //const profile = mockupPrivateOffline;
   //const profile = mockupPrivateOnline;
   //const profile = mockupPrivateInGame;

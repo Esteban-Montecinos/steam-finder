@@ -116,3 +116,61 @@ export async function getProfile(steamID64) {
   }
   return perfil;
 }
+export async function getPublicInfo(steamID64) {
+  const profiles = await fetch(
+    `https://steamcommunity.com/profiles/${steamID64}/?xml=1`
+  )
+    .then((response) => {
+      if (!response.ok) {
+        throw new Error("Error fetching data");
+      }
+      return response.text();
+    })
+    .catch((error) => {
+      console.error(error);
+    });
+
+  const p = cheerio.load(profiles, { xml: true });
+  const error = p("error").text();
+  if (error) {
+    const name = await fetch(
+      `https://steamcommunity.com/id/${steamID64}/?xml=1`
+    )
+      .then((response) => {
+        if (!response.ok) {
+          throw new Error("Error fetching data");
+        }
+        return response.text();
+      })
+      .catch((error) => {
+        console.error(error);
+      });
+    const u = cheerio.load(name, { xml: true });
+    const error = u("error").text();
+    if (error) return undefined;
+    const id = {};
+    // public information of the private profile
+    id.privacy = u("privacyState").text();
+    id.steamID = u("steamID").text();
+    id.onlineState = u("onlineState").text();
+    id.stateMessage = u("stateMessage").text();
+    id.avatarFull = u("avatarFull").first().text();
+    id.vacBanned = u("vacBanned").text();
+    id.tradeBanState = u("tradeBanState").text();
+    id.isLimitedAccount = u("isLimitedAccount").text();
+
+    return id;
+  }
+
+  const perfil = {};
+  perfil.privacy = p("privacyState").text();
+  perfil.steamID = p("steamID").text();
+  perfil.onlineState = p("onlineState").text();
+  perfil.stateMessage = p("stateMessage").text();
+  perfil.avatarFull = p("avatarFull").first().text();
+  perfil.vacBanned = p("vacBanned").text();
+  perfil.tradeBanState = p("tradeBanState").text();
+  perfil.isLimitedAccount = p("isLimitedAccount").text();
+
+  return perfil;
+}
