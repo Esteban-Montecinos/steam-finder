@@ -9,7 +9,6 @@ export default async function Image({ params: { steamID64 } }) {
   //const profile = mockupPrivateOffline;
   //const profile = mockupPrivateOnline;
   //const profile = mockupPrivateInGame;
-  const [state, message] = profile?.stateMessage.split("<br/>");
   return new ImageResponse(
     (
       <div
@@ -84,7 +83,7 @@ export default async function Image({ params: { steamID64 } }) {
                     fontSize: "1.5rem",
                   }}
                 >
-                  {state}
+                  {profile?.stateMessage.split("<br/>")[0]}
                 </p>
                 <p
                   style={{
@@ -94,7 +93,7 @@ export default async function Image({ params: { steamID64 } }) {
                     fontSize: "1.5rem",
                   }}
                 >
-                  {message}
+                  {profile?.stateMessage.split("<br/>")[1]}
                 </p>
               </div>
             </div>
@@ -162,7 +161,7 @@ export default async function Image({ params: { steamID64 } }) {
     ),
     {
       width: 1200,
-      height: 630,
+      height: 500,
     }
   );
 }
