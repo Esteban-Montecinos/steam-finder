@@ -16,7 +16,7 @@ export async function getProfile(steamID64) {
   const $ = cheerio.load(profiles, { xml: true });
   const error = $("error").text();
   if (error) {
-    const name = await fetch(
+    const names = await fetch(
       `https://steamcommunity.com/id/${steamID64}/?xml=1`
     )
       .then((response) => {
@@ -28,7 +28,7 @@ export async function getProfile(steamID64) {
       .catch((error) => {
         console.error(error);
       });
-    const i = cheerio.load(name, { xml: true });
+    const i = cheerio.load(names, { xml: true });
     const error = i("error").text();
     if (error) return undefined;
     const id = {};
@@ -117,7 +117,7 @@ export async function getProfile(steamID64) {
   return perfil;
 }
 export async function getPublicInfo(steamID64) {
-  const profiles = await fetch(
+  const profile = await fetch(
     `https://steamcommunity.com/profiles/${steamID64}/?xml=1`
   )
     .then((response) => {
@@ -130,7 +130,7 @@ export async function getPublicInfo(steamID64) {
       console.error(error);
     });
 
-  const p = cheerio.load(profiles, { xml: true });
+  const p = cheerio.load(profile, { xml: true });
   const error = p("error").text();
   if (error) {
     const name = await fetch(
