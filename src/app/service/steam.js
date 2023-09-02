@@ -144,7 +144,6 @@ export async function getPublicInfo(steamID64) {
   if (error) return undefined;
   const id = {};
   // public information of the private profile
-  id.steamID64 = i("steamID64").text();
   id.privacy = i("privacyState").text();
   id.steamID = i("steamID").text();
   id.onlineState = i("onlineState").text();
@@ -158,7 +157,6 @@ export async function getPublicInfo(steamID64) {
   }
 
   const perfil = {};
-  perfil.steamID64 = $("steamID64").text();
   perfil.privacy = $("privacyState").text();
   perfil.steamID = $("steamID").text();
   perfil.onlineState = $("onlineState").text();
