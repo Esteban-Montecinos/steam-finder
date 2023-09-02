@@ -10,7 +10,6 @@
   },
   "dependencies": {
     "@nextui-org/react": "^2.1.7",
-    "@tabler/icons-react": "^2.32.0",
     "autoprefixer": "10.4.15",
     "cheerio": "^1.0.0-rc.12",
     "eslint": "8.48.0",
