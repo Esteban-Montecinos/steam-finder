@@ -13,7 +13,7 @@ import IframeInfo from "./iframe-info";
 import CardInGame from "./card-in-game";
 import CardMostPlayed from "./card-most-played";
 import CardGroup from "./card-group";
-import { lines } from "./custom-summaty";
+import { lines } from "./custom-summary";
 
 export default function CardUser({
   steamID64,
