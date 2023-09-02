@@ -25,9 +25,9 @@ export default async function Image({ params: { steamID64 } }) {
           display: "flex",
           flexDirection: "column",
           backgroundColor: `${
-            profile?.onlineState === "in-game"
+            profile.onlineState === "in-game"
               ? "rgb(54 83 20)"
-              : profile?.onlineState === "online"
+              : profile.onlineState === "online"
               ? "rgb(12 74 110)"
               : "rgb(23 23 23)"
           }`,
@@ -38,9 +38,9 @@ export default async function Image({ params: { steamID64 } }) {
         <div
           style={{
             color: `${
-              profile?.onlineState === "in-game"
+              profile.onlineState === "in-game"
                 ? "rgb(163 230 53)"
-                : profile?.onlineState === "online"
+                : profile.onlineState === "online"
                 ? "rgb(56 189 248)"
                 : "rgb(163 163 163)"
             }`,
