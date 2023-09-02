@@ -15,60 +15,62 @@ export async function getProfile(steamID64) {
 
   const $ = cheerio.load(profiles, { xml: true });
   const error = $("error").text();
-  if (error){
+  if (error) {
     const name = await fetch(
       `https://steamcommunity.com/id/${steamID64}/?xml=1`
     )
-    .then((response) => {
-      if (!response.ok) {
-        throw new Error("Error fetching data");
-      }
-      return response.text();
-    })
-    .catch((error) => {
-      console.error(error);
-    });
+      .then((response) => {
+        if (!response.ok) {
+          throw new Error("Error fetching data");
+        }
+        return response.text();
+      })
+      .catch((error) => {
+        console.error(error);
+      });
     const i = cheerio.load(name, { xml: true });
-  const error = i("error").text();
-  if (error) return undefined;
-  const id = {};
-  // public information of the private profile
-  id.steamID64 = i("steamID64").text();
-  id.privacy = i("privacyState").text();
-  id.steamID = i("steamID").text();
-  id.onlineState = i("onlineState").text();
-  id.stateMessage = i("stateMessage").text();
-  id.avatarFull = i("avatarFull").first().text();
-  id.vacBanned = i("vacBanned").text();
-  id.tradeBanState = i("tradeBanState").text();
-  id.isLimitedAccount = i("isLimitedAccount").text();
-  if (id.privacy === "public") {
-    const publicId = {};
-    //public profile information
-    publicId.memberSince = i("memberSince").text();
-    publicId.realname = i("realname").first().text();
-    publicId.summary = i("summary").first().text();
-     //game info
-     publicId.gameLink = i("inGameInfo gameLink").first().text();
-     publicId.gameLogo = i("inGameInfo gameLogo").first().text();
-    //most played game
-    publicId.mostGameName = i("mostPlayedGame gameName").first().text();
-    publicId.mostGameLink = i("mostPlayedGame gameLink").first().text();
-    publicId.mostGameLogo = i("mostPlayedGame gameLogo").first().text();
-    publicId.mostHoursPlayed = i("mostPlayedGame hoursPlayed").first().text();
-    publicId.mostHoursOnRecord = i("mostPlayedGame hoursOnRecord").first().text();
-    // primary group
-    publicId.groupName = i("groupName").first().text();
-    publicId.groupURL = i("groupURL").first().text();
-    publicId.groupSummary = i("group summary").first().text();
-    publicId.avatarFull = i("group avatarFull").first().text();
-    publicId.memberCount = i("group memberCount").first().text();
-    publicId.membersInChat = i("group membersInChat").first().text();
-    publicId.membersInGame = i("group membersInGame").first().text();
-    publicId.membersOnline = i("group membersOnline").first().text();
-    id.public = publicId
-  }
-  return id;
+    const error = i("error").text();
+    if (error) return undefined;
+    const id = {};
+    // public information of the private profile
+    id.steamID64 = i("steamID64").text();
+    id.privacy = i("privacyState").text();
+    id.steamID = i("steamID").text();
+    id.onlineState = i("onlineState").text();
+    id.stateMessage = i("stateMessage").text();
+    id.avatarFull = i("avatarFull").first().text();
+    id.vacBanned = i("vacBanned").text();
+    id.tradeBanState = i("tradeBanState").text();
+    id.isLimitedAccount = i("isLimitedAccount").text();
+    if (id.privacy === "public") {
+      const publicId = {};
+      //public profile information
+      publicId.memberSince = i("memberSince").text();
+      publicId.realname = i("realname").first().text();
+      publicId.summary = i("summary").first().text();
+      //game info
+      publicId.gameLink = i("inGameInfo gameLink").first().text();
+      publicId.gameLogo = i("inGameInfo gameLogo").first().text();
+      //most played game
+      publicId.mostGameName = i("mostPlayedGame gameName").first().text();
+      publicId.mostGameLink = i("mostPlayedGame gameLink").first().text();
+      publicId.mostGameLogo = i("mostPlayedGame gameLogo").first().text();
+      publicId.mostHoursPlayed = i("mostPlayedGame hoursPlayed").first().text();
+      publicId.mostHoursOnRecord = i("mostPlayedGame hoursOnRecord")
+        .first()
+        .text();
+      // primary group
+      publicId.groupName = i("groupName").first().text();
+      publicId.groupURL = i("groupURL").first().text();
+      publicId.groupSummary = i("group summary").first().text();
+      publicId.avatarFull = i("group avatarFull").first().text();
+      publicId.memberCount = i("group memberCount").first().text();
+      publicId.membersInChat = i("group membersInChat").first().text();
+      publicId.membersInGame = i("group membersInGame").first().text();
+      publicId.membersOnline = i("group membersOnline").first().text();
+      id.public = publicId;
+    }
+    return id;
   }
 
   const perfil = {};
@@ -83,7 +85,7 @@ export async function getProfile(steamID64) {
   perfil.isLimitedAccount = $("isLimitedAccount").text();
   if (perfil.privacy === "public") {
     //public profile information
-    const publicPerfil = {}
+    const publicPerfil = {};
     publicPerfil.memberSince = $("memberSince").text();
     publicPerfil.realname = $("realname").first().text();
     publicPerfil.summary = $("summary").first().text();
@@ -95,8 +97,12 @@ export async function getProfile(steamID64) {
     publicPerfil.mostGameName = $("mostPlayedGame gameName").first().text();
     publicPerfil.mostGameLink = $("mostPlayedGame gameLink").first().text();
     publicPerfil.mostGameLogo = $("mostPlayedGame gameLogo").first().text();
-    publicPerfil.mostHoursPlayed = $("mostPlayedGame hoursPlayed").first().text();
-    publicPerfil.mostHoursOnRecord = $("mostPlayedGame hoursOnRecord").first().text();
+    publicPerfil.mostHoursPlayed = $("mostPlayedGame hoursPlayed")
+      .first()
+      .text();
+    publicPerfil.mostHoursOnRecord = $("mostPlayedGame hoursOnRecord")
+      .first()
+      .text();
     // primary group
     publicPerfil.groupName = $("groupName").first().text();
     publicPerfil.groupURL = $("groupURL").first().text();
@@ -108,63 +114,5 @@ export async function getProfile(steamID64) {
     publicPerfil.membersOnline = $("group membersOnline").first().text();
     perfil.public = publicPerfil;
   }
-  return perfil;
-}
-export async function getPublicInfo(steamID64) {
-  const profiles = await fetch(
-    `https://steamcommunity.com/profiles/${steamID64}/?xml=1`
-  )
-    .then((response) => {
-      if (!response.ok) {
-        throw new Error("Error fetching data");
-      }
-      return response.text();
-    })
-    .catch((error) => {
-      console.error(error);
-    });
-
-  const $ = cheerio.load(profiles, { xml: true });
-  const error = $("error").text();
-  if (error){
-    const name = await fetch(
-      `https://steamcommunity.com/id/${steamID64}/?xml=1`
-    )
-    .then((response) => {
-      if (!response.ok) {
-        throw new Error("Error fetching data");
-      }
-      return response.text();
-    })
-    .catch((error) => {
-      console.error(error);
-    });
-    const i = cheerio.load(name, { xml: true });
-  const error = i("error").text();
-  if (error) return undefined;
-  const id = {};
-  // public information of the private profile
-  id.privacy = i("privacyState").text();
-  id.steamID = i("steamID").text();
-  id.onlineState = i("onlineState").text();
-  id.stateMessage = i("stateMessage").text();
-  id.avatarFull = i("avatarFull").first().text();
-  id.vacBanned = i("vacBanned").text();
-  id.tradeBanState = i("tradeBanState").text();
-  id.isLimitedAccount = i("isLimitedAccount").text();
-  
-  return id;
-  }
-
-  const perfil = {};
-  perfil.privacy = $("privacyState").text();
-  perfil.steamID = $("steamID").text();
-  perfil.onlineState = $("onlineState").text();
-  perfil.stateMessage = $("stateMessage").text();
-  perfil.avatarFull = $("avatarFull").first().text();
-  perfil.vacBanned = $("vacBanned").text();
-  perfil.tradeBanState = $("tradeBanState").text();
-  perfil.isLimitedAccount = $("isLimitedAccount").text();
-  
   return perfil;
 }

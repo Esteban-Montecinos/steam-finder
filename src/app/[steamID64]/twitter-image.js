@@ -1,16 +1,11 @@
 import { ImageResponse } from "next/server";
-import { getPublicInfo } from "../service/steam";
-import {
-  mockupPrivateInGame,
-  mockupPrivateOffline,
-  mockupPrivateOnline,
-} from "../service/mockup/api";
+import { getProfile } from "../service/steam";
 
 export const runtime = "edge";
 export const contentType = "image/png";
 
 export default async function Image({ params: { steamID64 } }) {
-  const profile = await getPublicInfo(steamID64);
+  const profile = await getProfile(steamID64);
   //const profile = mockupPrivateOffline;
   //const profile = mockupPrivateOnline;
   //const profile = mockupPrivateInGame;
@@ -39,7 +34,7 @@ export default async function Image({ params: { steamID64 } }) {
             gap: "1.25rem",
           }}
         >
-          {/**<div
+          <div
             style={{
               display: "flex",
               textAlign: "center",
@@ -54,28 +49,11 @@ export default async function Image({ params: { steamID64 } }) {
               alt={`${profile.steamID}'s Steam avatar full size`}
               width="240"
               height="240"
-            />*/}
-          <div
-            style={{
-              display: "flex",
-              flexDirection: "column",
-              gap: "1rem",
-            }}
-          >
-            <p
-              style={{
-                padding: "0",
-                margin: "0",
-                fontSize: "2.5rem",
-              }}
-            >
-              {profile.steamID}
-            </p>
+            />
             <div
               style={{
                 display: "flex",
                 flexDirection: "column",
-                justifyContent: "flex-end",
                 gap: "1rem",
               }}
             >
@@ -83,26 +61,43 @@ export default async function Image({ params: { steamID64 } }) {
                 style={{
                   padding: "0",
                   margin: "0",
-                  opacity: "0.6",
-                  fontSize: "1.5rem",
+                  fontSize: "2.5rem",
                 }}
               >
-                {state}
+                {profile.steamID}
               </p>
-              {message && (
+              <div
+                style={{
+                  display: "flex",
+                  flexDirection: "column",
+                  justifyContent: "flex-end",
+                  gap: "1rem",
+                }}
+              >
                 <p
                   style={{
                     padding: "0",
                     margin: "0",
+                    opacity: "0.6",
                     fontSize: "1.5rem",
                   }}
                 >
-                  {message}
+                  {state}
                 </p>
-              )}
+                {message && (
+                  <p
+                    style={{
+                      padding: "0",
+                      margin: "0",
+                      fontSize: "1.5rem",
+                    }}
+                  >
+                    {message}
+                  </p>
+                )}
+              </div>
             </div>
           </div>
-          {/**</div>*/}
           <p
             style={{
               color: "rgb(229 229 229)",
