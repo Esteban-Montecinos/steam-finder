@@ -49,7 +49,6 @@ export async function getProfile(steamID64) {
     publicId.realname = i("realname").first().text();
     publicId.summary = i("summary").first().text();
      //game info
-     publicId.gameName = i("inGameInfo gameName").first().text();
      publicId.gameLink = i("inGameInfo gameLink").first().text();
      publicId.gameLogo = i("inGameInfo gameLogo").first().text();
     //most played game
@@ -109,5 +108,65 @@ export async function getProfile(steamID64) {
     publicPerfil.membersOnline = $("group membersOnline").first().text();
     perfil.public = publicPerfil;
   }
+  return perfil;
+}
+export async function getPublicInfo(steamID64) {
+  const profiles = await fetch(
+    `https://steamcommunity.com/profiles/${steamID64}/?xml=1`
+  )
+    .then((response) => {
+      if (!response.ok) {
+        throw new Error("Error fetching data");
+      }
+      return response.text();
+    })
+    .catch((error) => {
+      console.error(error);
+    });
+
+  const $ = cheerio.load(profiles, { xml: true });
+  const error = $("error").text();
+  if (error){
+    const name = await fetch(
+      `https://steamcommunity.com/id/${steamID64}/?xml=1`
+    )
+    .then((response) => {
+      if (!response.ok) {
+        throw new Error("Error fetching data");
+      }
+      return response.text();
+    })
+    .catch((error) => {
+      console.error(error);
+    });
+    const i = cheerio.load(name, { xml: true });
+  const error = i("error").text();
+  if (error) return undefined;
+  const id = {};
+  // public information of the private profile
+  id.steamID64 = i("steamID64").text();
+  id.privacy = i("privacyState").text();
+  id.steamID = i("steamID").text();
+  id.onlineState = i("onlineState").text();
+  id.stateMessage = i("stateMessage").text();
+  id.avatarFull = i("avatarFull").first().text();
+  id.vacBanned = i("vacBanned").text();
+  id.tradeBanState = i("tradeBanState").text();
+  id.isLimitedAccount = i("isLimitedAccount").text();
+  
+  return id;
+  }
+
+  const perfil = {};
+  perfil.steamID64 = $("steamID64").text();
+  perfil.privacy = $("privacyState").text();
+  perfil.steamID = $("steamID").text();
+  perfil.onlineState = $("onlineState").text();
+  perfil.stateMessage = $("stateMessage").text();
+  perfil.avatarFull = $("avatarFull").first().text();
+  perfil.vacBanned = $("vacBanned").text();
+  perfil.tradeBanState = $("tradeBanState").text();
+  perfil.isLimitedAccount = $("isLimitedAccount").text();
+  
   return perfil;
 }
