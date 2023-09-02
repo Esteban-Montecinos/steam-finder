@@ -13,14 +13,14 @@ export default async function Image({ params: { steamID64 } }) {
     (
       <div
         style={{
-          fontSize: "2rem",
+          fontSize: "32px",
           width: "100%",
           height: "100%",
           display: "flex",
           flexDirection: "column",
           backgroundColor: "rgb(54 83 20)",
-          lineHeight: "1.25rem",
-          padding: "2.5rem",
+          lineHeight: "20px",
+          padding: "40px",
         }}
       >
         <div
@@ -30,7 +30,7 @@ export default async function Image({ params: { steamID64 } }) {
             textAlign: "center",
             alignItems: "flex-start",
             justifyContent: "space-between",
-            gap: "1.25rem",
+            gap: "20px",
           }}
         >
           <div
@@ -39,11 +39,11 @@ export default async function Image({ params: { steamID64 } }) {
               textAlign: "center",
               alignItems: "flex-start",
               justifyContent: "flex-start",
-              gap: "1.5rem",
+              gap: "24px",
             }}
           >
             <img
-              style={{ display: "flex",borderRadius: "1rem" }}
+              style={{ display: "flex",borderRadius: "16px" }}
               src={profile?.avatarFull}
               alt={`${profile?.steamID}'s Steam avatar full size`}
               width="240"
@@ -53,7 +53,7 @@ export default async function Image({ params: { steamID64 } }) {
               style={{
                 display: "flex",
                 flexDirection: "column",
-                gap: "1rem",
+                gap: "16px",
               }}
             >
               <p
@@ -61,7 +61,7 @@ export default async function Image({ params: { steamID64 } }) {
                     display: "flex",
                   padding: "0",
                   margin: "0",
-                  fontSize: "2.5rem",
+                  fontSize: "40px",
                 }}
               >
                 {profile?.steamID}
@@ -71,7 +71,7 @@ export default async function Image({ params: { steamID64 } }) {
                   display: "flex",
                   flexDirection: "column",
                   justifyContent: "flex-end",
-                  gap: "1rem",
+                  gap: "16px",
                 }}
               >
                 <p
@@ -80,7 +80,7 @@ export default async function Image({ params: { steamID64 } }) {
                     padding: "0",
                     margin: "0",
                     opacity: "0.6",
-                    fontSize: "1.5rem",
+                    fontSize: "24px",
                   }}
                 >
                   {profile?.stateMessage.split("<br/>")[0]}
@@ -90,7 +90,7 @@ export default async function Image({ params: { steamID64 } }) {
                     display: "flex",
                     padding: "0",
                     margin: "0",
-                    fontSize: "1.5rem",
+                    fontSize: "24px",
                   }}
                 >
                   {profile?.stateMessage.split("<br/>")[1]}
@@ -104,7 +104,7 @@ export default async function Image({ params: { steamID64 } }) {
               color: "rgb(229 229 229)",
               padding: "0",
               margin: "0",
-              fontSize: "2.5rem",
+              fontSize: "40px",
             }}
           >
             {profile?.privacy}
