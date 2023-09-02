@@ -19,7 +19,7 @@ export default function RootLayout({ children }) {
   }
   return (
     <html lang="en" className="dark">
-      <body className={inter.className}>
+      <body className={`${inter.className} bg-black bg-gradient-to-tl from-black via-neutral-600/20 to-black`}>
         <Providers>
         <main className="flex flex-col items-center justify-center max-w-xl min-h-screen gap-4 p-4 m-auto">
       Steam Finder
