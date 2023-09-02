@@ -24,26 +24,14 @@ export default async function Image({ params: { steamID64 } }) {
           height: "100%",
           display: "flex",
           flexDirection: "column",
-          backgroundColor: `${
-            profile.onlineState === "in-game"
-              ? "rgb(54 83 20)"
-              : profile.onlineState === "online"
-              ? "rgb(12 74 110)"
-              : "rgb(23 23 23)"
-          }`,
+          backgroundColor: "rgb(54 83 20)",
           lineHeight: "1.25rem",
           padding: "2.5rem",
         }}
       >
         <div
           style={{
-            color: `${
-              profile.onlineState === "in-game"
-                ? "rgb(163 230 53)"
-                : profile.onlineState === "online"
-                ? "rgb(56 189 248)"
-                : "rgb(163 163 163)"
-            }`,
+            color: "rgb(163 230 53)",
             display: "flex",
             textAlign: "center",
             alignItems: "flex-start",
