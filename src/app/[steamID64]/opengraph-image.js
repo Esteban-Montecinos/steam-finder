@@ -10,10 +10,10 @@ export const runtime = "edge";
 export const contentType = "image/png";
 
 export default async function Image({ params: { steamID64 } }) {
-  //const profile = await getPublicInfo(steamID64);
+  const profile = await getPublicInfo(steamID64);
   //const profile = mockupPrivateOffline;
   //const profile = mockupPrivateOnline;
-  const profile = mockupPrivateInGame;
+  //const profile = mockupPrivateInGame;
   const [state, message] = profile.stateMessage.split("<br/>");
   return new ImageResponse(
     (
