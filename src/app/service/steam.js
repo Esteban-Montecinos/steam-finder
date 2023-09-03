@@ -117,8 +117,9 @@ export async function getProfile(steamID64) {
   return perfil;
 }
 export async function getPublicInfo(steamID64) {
+  cosnt [steamID, url] = steamID64.split("/");
   const profile = await fetch(
-    `https://steamcommunity.com/profiles/${steamID64}/?xml=1`
+    `https://steamcommunity.com/profiles/${steamID}/?xml=1`
   )
     .then((response) => {
       if (!response.ok) {
@@ -134,7 +135,7 @@ export async function getPublicInfo(steamID64) {
   const error = p("error").text();
   if (error) {
     const name = await fetch(
-      `https://steamcommunity.com/id/${steamID64}/?xml=1`
+      `https://steamcommunity.com/id/${steamID}/?xml=1`
     )
       .then((response) => {
         if (!response.ok) {
